@@ -1,14 +1,40 @@
 # ToDo List - API + Frontend
 
-Este projeto é uma aplicação de lista de tarefas (ToDo List) com backend em Node.js (Express + MySQL) e frontend divertido com ícones FontAwesome.
+Este projeto é uma aplicação de lista de tarefas (ToDo List) com backend em Node.js (Express + MySQL) e frontend com ícones FontAwesome.
 
 ---
 
 ## Como rodar o projeto
 
 1. **Clone o repositório e instale as dependências:**
+
    ```sh
    yarn init -y
+   ```
+
+   **configure o package.json:**
+  ```json
+   {
+      "name": "todolist",
+      "version": "1.0.0",
+      "main": "app.js",
+      "type": "module",
+      "license": "MIT",
+      "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+      }
+   }
+   ```
+   
+   **Instale as dependências**
+   
+   ```sh
+   yarn add mysql2 dotenv express
+   ```
+
+   ```sh
+   yarn add -D nodemon
    ```
 
 2. **Configure o banco de dados MySQL:**
@@ -24,11 +50,12 @@ Este projeto é uma aplicação de lista de tarefas (ToDo List) com backend em N
        status TINYINT(1) DEFAULT 0
      );
      ```
-
 3. **Inicie o servidor:**
+
    ```sh
    yarn dev
    ```
+
    O servidor rodará em `http://localhost:3000/`.
 
 4. **Acesse o frontend:**
@@ -41,9 +68,12 @@ Este projeto é uma aplicação de lista de tarefas (ToDo List) com backend em N
 ```
 toDoList/
 │
+├── .env
+├── .gitignore
 ├── app.js
 ├── package.json
 ├── README.MD
+├── yarn.lock
 │
 ├── controllers/
 │   └── tarefaController.js
@@ -69,8 +99,9 @@ toDoList/
 Base URL: `http://localhost:3000/tarefas`
 
 ### 1. Criar Tarefa
+
 - **POST** `/`
-- **Body:**  
+- **Body:**
   ```json
   {
     "titulo": "string",
@@ -94,6 +125,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 2. Listar Todas as Tarefas
+
 - **GET** `/`
 - **Resposta:**  
   `200 OK`
@@ -107,6 +139,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 3. Buscar Tarefa por ID
+
 - **GET** `/:id`
 - **Resposta:**  
   `200 OK`
@@ -122,8 +155,9 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 4. Atualizar Tarefa
+
 - **PUT** `/:id`
-- **Body:**  
+- **Body:**
   ```json
   {
     "titulo": "string",
@@ -141,6 +175,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 5. Deletar Tarefa
+
 - **DELETE** `/:id`
 - **Resposta:**  
   `204 No Content`
@@ -148,6 +183,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 6. Buscar Tarefas por Status
+
 - **GET** `/status/:status`
 - **Exemplo:** `/status/1` (tarefas concluídas)
 - **Resposta:**  
@@ -162,6 +198,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 7. Buscar Tarefas por Data
+
 - **GET** `/data/:data`
 - **Exemplo:** `/data/2025-08-26`
 - **Resposta:**  
@@ -176,6 +213,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 8. Filtrar Tarefas por Título e/ou Descrição
+
 - **GET** `/filtro?titulo=...&descricao=...`
 - **Exemplo:** `/filtro?titulo=mercado`
 - **Resposta:**  
@@ -190,6 +228,7 @@ Base URL: `http://localhost:3000/tarefas`
 ---
 
 ### 9. Marcar Tarefa como Concluída
+
 - **PATCH** `/:id/concluir`
 - **Resposta:**  
   `200 OK`
@@ -204,4 +243,5 @@ Base URL: `http://localhost:3000/tarefas`
 O frontend está em `/public/index.html` e consome a API usando JavaScript puro e ícones FontAwesome.
 
 - Para adicionar, concluir ou remover tarefas, utilize os botões e formulários da interface.
-- Os ícones deixam a experiência mais divertida e visual!
+
+- Qualquer dúvida pergunte!
