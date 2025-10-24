@@ -8,7 +8,7 @@ Este projeto é uma aplicação de lista de tarefas (ToDo List) com backend em N
 
 1. **Clone o repositório e instale as dependências:**
    ```sh
-   yarn install
+   yarn init -y
    ```
 
 2. **Configure o banco de dados MySQL:**

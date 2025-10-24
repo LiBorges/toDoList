@@ -1,6 +1,6 @@
-import * as tarefaModel from '../models/tarefa.js';
+import tarefaModel from '../models/tarefa.js';
 
-export const criarTarefa = async (req, res) => {
+const criarTarefa = async (req, res) => {
   try {
     const tarefa = req.body;
     const id = await tarefaModel.criarTarefa(tarefa);
@@ -10,7 +10,7 @@ export const criarTarefa = async (req, res) => {
   }
 };
 
-export const buscarTarefas = async (req, res) => {
+const buscarTarefas = async (req, res) => {
   try {
     const tarefas = await tarefaModel.buscarTarefas();
     res.status(200).json(tarefas);
@@ -19,7 +19,7 @@ export const buscarTarefas = async (req, res) => {
   }
 };
 
-export const buscarTarefaPorId = async (req, res) => {
+const buscarTarefaPorId = async (req, res) => {
   try {
     const { id } = req.params;
     const tarefa = await tarefaModel.buscarTarefaPorId(id);
@@ -33,7 +33,7 @@ export const buscarTarefaPorId = async (req, res) => {
   }
 };
 
-export const atualizarTarefa = async (req, res) => {
+const atualizarTarefa = async (req, res) => {
   try {
     const { id } = req.params;
     const tarefa = req.body;
@@ -44,9 +44,10 @@ export const atualizarTarefa = async (req, res) => {
   }
 };
 
-export const deletarTarefa = async (req, res) => {
+const deletarTarefa = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log('ID da tarefa a ser deletada:', req.params.id);
     await tarefaModel.deletarTarefa(id);
     res.status(204).send();
   } catch (error) {
@@ -54,7 +55,7 @@ export const deletarTarefa = async (req, res) => {
   }
 };
 
-export const buscarTarefasPorStatus = async (req, res) => {
+const buscarTarefasPorStatus = async (req, res) => {
   try {
     const { status } = req.params;
     const tarefas = await tarefaModel.buscarTarefasPorStatus(status);
@@ -64,7 +65,7 @@ export const buscarTarefasPorStatus = async (req, res) => {
   }
 };
 
-export const buscarTarefasPorData = async (req, res) => {
+const buscarTarefasPorData = async (req, res) => {
   try {
     const { data } = req.params;
     const tarefas = await tarefaModel.buscarTarefasPorData(data);
@@ -74,7 +75,7 @@ export const buscarTarefasPorData = async (req, res) => {
   }
 };
 
-export const filtrarTarefas = async (req, res) => {
+const filtrarTarefas = async (req, res) => {
   try {
     const { pesquisa } = req.query;
     const tarefas = await tarefaModel.filtrarTarefas(pesquisa, pesquisa);
@@ -84,7 +85,7 @@ export const filtrarTarefas = async (req, res) => {
   }
 };
 
-export const marcarTarefaComoConcluida = async (req, res) => {
+const marcarTarefaComoConcluida = async (req, res) => {
   try {
     const { id } = req.params;
     await tarefaModel.marcarTarefaComoConcluida(id);
@@ -92,4 +93,16 @@ export const marcarTarefaComoConcluida = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Erro ao marcar tarefa como concluída' });
   }
+};
+
+export default {
+  criarTarefa,
+  buscarTarefas,
+  buscarTarefaPorId,
+  atualizarTarefa,
+  deletarTarefa,
+  buscarTarefasPorStatus,
+  buscarTarefasPorData,
+  filtrarTarefas,
+  marcarTarefaComoConcluida
 };

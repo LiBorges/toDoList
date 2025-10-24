@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tarefaController from '../controllers/tarefaController.js';
+import tarefaController from '../controllers/tarefaController.js';
 
 const router = express.Router();
 
