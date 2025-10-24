@@ -6,13 +6,13 @@ import tarefaRoutes from './routes/tarefasRoutes.js'; // Importa as rotas relaci
 
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 const app = express(); // Cria uma instância do Express
+const port = process.env.PORTA; // Define a porta onde o servidor irá rodar
 app.use(express.json()); // Habilita o parsing de JSON no corpo das requisições
 app.use(cors()); // Habilita o CORS para todas as rotas
-const port = 3000; // Define a porta onde o servidor irá rodar
 app.use(express.static('public')); // Serve arquivos estáticos da pasta public
 app.use('/tarefas', tarefaRoutes); // Usa as rotas de tarefas no caminho /tarefas
 app.get('/', (req, res) => {
-  res.sendFile('public/index.html', { root: '.' }); // Quando acessar /, envia o arquivo index.html da pasta public
+  res.sendFile('index.html', { root: './public' }); // Quando acessar /, envia o arquivo index.html da pasta public
 });
 const server = http.createServer(app); // Cria o servidor HTTP usando o Express
 server.listen(port, () => {
