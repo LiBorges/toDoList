@@ -8,6 +8,7 @@ CREATE TABLE `tarefa` (
 );
 */
 import db from '../database/database.js';
+
 const criarTarefa = async (tarefa) => {
   console.log('Criando tarefa:', tarefa);
   const [result] = await db.query('INSERT INTO tarefa SET ?', tarefa);
